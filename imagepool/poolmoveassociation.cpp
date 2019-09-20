@@ -310,7 +310,7 @@ void MoveAssociation::storeSCPCallback(void *callbackData, T_DIMSE_StoreProgress
 		*/
 		if (rsp->DimseStatus == STATUS_Success) {
 			/* which SOP class and SOP instance ? */
-			if (! DU_findSOPClassAndInstanceInDataSet(cbdata->dataset, sopClass, sopInstance)) {
+                  if (! DU_findSOPClassAndInstanceInDataSet(cbdata->dataset, sopClass, sizeof(sopClass), sopInstance, sizeof(sopInstance))) {
 				rsp->DimseStatus = STATUS_STORE_Error_CannotUnderstand;
 			}
 			else if (strcmp(sopClass, req->AffectedSOPClassUID) != 0) {
